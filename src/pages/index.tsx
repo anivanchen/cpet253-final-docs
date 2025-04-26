@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 
 const geistSans = Geist({
@@ -31,7 +32,7 @@ export default function Home() {
 
           <div className="grid col-span-2">
             <h3 className="mt-[1rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Obstacles Faced</h3>
-            <p className="mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]">There were a couple obstacles that I had faced while working on this project. First, I had to figure out how encoders on this robot were connected to the board, then figure out how to read the encoder values using hardware interrupts. After being able to properly read the direction and accumulate counts of the encoders, I moved onto working on homing and wandering functions. I tried multiple ways to do the homing, but the innacuracy of the robot's odometry position and rotation drifting over time meant that this was more complicated than expected. In the end, I was able to figure out a simpler way to do the homing, and also had to tune the wheel speeds, rotation parameters, and tolerances in "completing" the homing process, which took multiple hours to get fairly consistent.</p>
+            <p className="mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]">There were a couple obstacles that I had faced while working on this project. First, I had to figure out how encoders on this robot were connected to the board, then figure out how to read the encoder values using hardware interrupts. After being able to properly read the direction and accumulate counts of the encoders, I moved onto working on homing and wandering functions. I tried multiple ways to do the homing, but the inaccuracy of the robot's odometry position and rotation drifting over time meant that this was more complicated than expected. In the end, I was able to figure out a simpler way to do the homing, and also had to tune the wheel speeds, rotation parameters, and tolerances in "completing" the homing process, which took multiple hours to get fairly consistent.</p>
           </div>
           <div className="grid col-span-2">
             <h3 className="mt-[1rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Testing and Verification</h3>
@@ -55,10 +56,10 @@ export default function Home() {
           <div>
             <h3 className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Encoders</h3>
             <p className="justify-start mt-[1rem] mb-[1rem] ml-[4rem] mr-[4rem]">Hall effect quadrature encoders work by using a rotating disc with evenly spaced magnets. As the disc rotates, these magnets pass over two Hall effect sensors, which are positioned slightly apart. Each sensor outputs a signal that switches between high and low states as the magnets pass by. Because the sensors are offset, their signals are out of phase, creating two pulse lines (A and B) offset by 90 degrees. By monitoring the sequence of these pulses, we can determine the direction of rotation. The number of pulses also tells us how far the wheel has rotated.</p>
-            <p className="justify-start mt-[1rem] mb-[1rem] ml-[4rem] mr-[4rem]">To capture these pulses, we use hardware interrupts that read both lines when triggered, and this figures out the direction the motor is being driven in. Given that A is BIT1 and B is BIT0, reading <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded font-semibold">01</code> would mean going in one direction, and reading <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded font-semibold">10</code> would mean going in the opposite direction. We have a left and right encoder, so we must keep track of two encoders counts.</p>
+            <p className="justify-start mt-[1rem] mb-[1rem] ml-[4rem] mr-[4rem]">To capture these pulses, we use hardware interrupts that read both lines when triggered, and this figures out the direction the motor is being driven in. Given that A is BIT1 and B is BIT0, reading <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded-lg font-semibold">01</code> would mean going in one direction, and reading <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded-lg font-semibold">10</code> would mean going in the opposite direction. We have a left and right encoder, so we must keep track of two encoders counts.</p>
             <p className="justify-start mt-[1rem] mb-[1rem] ml-[4rem] mr-[4rem]">In this case, the wheels had a diameter of 2.75 inches, a gear ratio of 60:1 between the motor shaft and wheel shaft and 12 counts per motor shaft rotation. This means that to convert actual distance traveled (in feet) from raw encoder counts, which is counted on both the rising and falling edges, we must do a unit conversion. This unit conversion is </p>
             
-            <pre className="bg-black/[.05] dark:bg-white/[.06] mx-[4rem] px-[1rem] py-[1rem] rounded font-[family-name:var(--font-geist-mono)] font-semibold text-wrap">
+            <pre className="bg-black/[.05] dark:bg-white/[.06] mx-[4rem] px-[1rem] py-[1rem] rounded-lg font-[family-name:var(--font-geist-mono)] font-semibold text-wrap">
               <code>
                 dist_in_ft = (counts / (60.0 * 12.0)) * 2.0 * (2.75 / 12.0) * M_PI
               </code>
@@ -73,7 +74,7 @@ export default function Home() {
             <h3 className="mt-[4rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Odometry</h3>
             <p className="justify-start mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]">Two-wheel odometry is a method of estimating a robot's position and orientation by using the data from two wheels. By tracking the rotation of each wheel, we can determine how far the robot has traveled and how much it has turned. This information is then used to update the robot's estimated position and orientation in a process called pose estimation.</p>
 
-            <pre className="bg-black/[.05] dark:bg-white/[.06] mx-[4rem] px-[1rem] py-[1rem] rounded font-[family-name:var(--font-geist-mono)] font-semibold text-wrap">
+            <pre className="bg-black/[.05] dark:bg-white/[.06] mx-[4rem] px-[1rem] py-[1rem] rounded-lg font-[family-name:var(--font-geist-mono)] font-semibold text-wrap">
               <code>
                 const double REF_TO_WHEEL_DIST = 0.25; // feet {"\n\n"}
 
@@ -99,7 +100,7 @@ export default function Home() {
               </code>
             </pre>
 
-            <p className="justify-start mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]"><code className="bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded font-semibold">delta_left</code> and <code className="bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded font-semibold">delta_right</code> are given to the function as the current encoder count minus the previous encoder count.</p>
+            <p className="justify-start mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]"><code className="bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded-lg font-semibold">delta_left</code> and <code className="bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded-lg font-semibold">delta_right</code> are given to the function as the current encoder count minus the previous encoder count. A more in-depth explanation of how two wheel odometry kinematics works can be found <Link className="text-blue-500 underline hover:opacity-[75%] transition-opacity transition-duration-300" href="https://www.hmc.edu/lair/ARW/ARW-Lecture01-Odometry.pdf" prefetch={true}>here</Link>.</p>
           </div>
 
           <div>
@@ -115,9 +116,9 @@ export default function Home() {
           </div>
           <div>
             <h3 className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Homing Function</h3>
-            <p className="justify-start mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]">The homing function works by utilizing the position and rotation values calculated by the robot as it operates and drives around. When the homing function is triggered by the user, the robot first stops, then utilizes its current position to calcuate a desired heading to aim at the origin (0, 0) where it started driving from. This calculation looks like</p>
+            <p className="justify-start mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]">The homing function works by utilizing the position and rotation values calculated by the robot as it operates and drives around. When the homing function is triggered by the user, the robot first stops, then utilizes its current position to calculate a desired heading to aim at the origin (0, 0) where it started driving from. This calculation looks like</p>
 
-            <pre className="bg-black/[.05] dark:bg-white/[.06] mx-[4rem] px-[1rem] py-[1rem] rounded font-[family-name:var(--font-geist-mono)] font-semibold text-wrap">
+            <pre className="bg-black/[.05] dark:bg-white/[.06] mx-[4rem] px-[1rem] py-[1rem] rounded-lg font-[family-name:var(--font-geist-mono)] font-semibold text-wrap">
               <code>
               double normalize_angle_0_to_2pi(double angle) {"{"}{"\n"}
               {"  "}angle = fmod(angle, 2 * M_PI);{"\n"}
@@ -140,7 +141,7 @@ export default function Home() {
 
             <p className="justify-start mt-[1rem] mb-[1rem] ml-[4rem] mr-[4rem]">After this calculation, we utilize a function to rotate the robot in place to this angle within a certain tolerance.</p>
 
-            <pre className="bg-black/[.05] dark:bg-white/[.06] mx-[4rem] px-[1rem] py-[1rem] rounded font-[family-name:var(--font-geist-mono)] font-semibold text-wrap">
+            <pre className="bg-black/[.05] dark:bg-white/[.06] mx-[4rem] px-[1rem] py-[1rem] rounded-lg font-[family-name:var(--font-geist-mono)] font-semibold text-wrap">
               <code>
               case s_HOMING: {"{"}{"\n"}
               {"  "}if (isNewState) {"{"}{"\n"}
@@ -172,11 +173,11 @@ export default function Home() {
           </div>
           <div>
             <h3 className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Bluetooth, Controls, and FSMs</h3>
-            <p className="justify-start mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]">The robot's operation is controlled using a mixture of hardware interrupts, which updates the encoder counts, and Finite State Machines (FSMs). This robot features two FSMs, one that controls the mode it is in, and another that controls the state of the motors. There are 3 modes, <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded font-semibold">m_USER</code> mode, <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded font-semibold">m_HOMING</code> mode, and <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded font-semibold">m_WANDER</code> mode. There are 6 motor states, <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded font-semibold">s_STOP</code>, <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded font-semibold">s_FORWARD</code>, <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded font-semibold">s_BACKWARD</code>, <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded font-semibold">s_ROT_L_90</code> (rotates 90 degrees to the left), <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded font-semibold">s_ROT_R_90</code> (rotates 90 degrees to the right), and <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded font-semibold">HOMING</code> (points robot at origin).</p>
+            <p className="justify-start mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]">The robot's operation is controlled using a mixture of hardware interrupts, which updates the encoder counts, and Finite State Machines (FSMs). This robot features two FSMs, one that controls the mode it is in, and another that controls the state of the motors. There are 3 modes, <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded-lg font-semibold">m_USER</code> mode, <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded-lg font-semibold">m_HOMING</code> mode, and <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded-lg font-semibold">m_WANDER</code> mode. There are 6 motor states, <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded-lg font-semibold">s_STOP</code>, <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded-lg font-semibold">s_FORWARD</code>, <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded-lg font-semibold">s_BACKWARD</code>, <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded-lg font-semibold">s_ROT_L_90</code> (rotates 90 degrees to the left), <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded-lg font-semibold">s_ROT_R_90</code> (rotates 90 degrees to the right), and <code className="mt-[1rem] mb-[1rem] bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded-lg font-semibold">HOMING</code> (points robot at origin).</p>
 
             <p className="justify-start mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]">This robot is controllable using Bluetooth from a mobile smartphone. The user is able to change the modes and states the robot is in by sending an integer to the robot. The different commands sendable to the robot are shown below.</p>
 
-            <pre className="bg-black/[.05] dark:bg-white/[.06] mx-[4rem] px-[1rem] py-[1rem] rounded font-[family-name:var(--font-geist-mono)] font-semibold text-wrap">
+            <pre className="bg-black/[.05] dark:bg-white/[.06] mx-[4rem] px-[1rem] py-[1rem] rounded-lg font-[family-name:var(--font-geist-mono)] font-semibold text-wrap">
               <code>
               switch (command) {"{"}{"\n"}
 	              {"  "}case 0: {"{"}state = s_STOP; break;{"}"}{"\n"}
@@ -193,6 +194,9 @@ export default function Home() {
               </code>
             </pre>
           </div>
+        </div>
+        <div className="mt-[1rem] text-xs">
+          Copyright (c) 2025 Ivan Chen
         </div>
       </main>
     </div>
