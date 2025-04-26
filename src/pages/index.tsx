@@ -48,9 +48,9 @@ export default function Home() {
           <div className="grid col-span-2 mt-[2rem] py-[2rem] border-t-2 border-b-2 border-gray-700 text-center">
           <h1 className="text-[1.5rem] font-bold">Technical Information</h1>
           </div>
-          
-          <div>
-            <p>INSERT IMAGES</p>
+
+          <div className="relative mx-auto rounded-lg overflow-hidden">
+            <Image className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] " src="/encoder-osc.jpg" width={400} height={500} alt="Oscilloscope output of encoders A and B channel"/>
           </div>
           <div>
             <h3 className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Encoders</h3>
@@ -63,10 +63,11 @@ export default function Home() {
                 dist_in_ft = (counts / (60.0 * 12.0)) * 2.0 * (2.75 / 12.0) * M_PI
               </code>
             </pre>
-
           </div>
-          <div>
-            <p>INSERT IMAGES</p>
+
+          <div className="relative mx-auto rounded-lg overflow-hidden">
+            <Image className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] " src="/wheel-odometry-model.png" width={400} height={500} alt="https://www.researchgate.net/figure/Wheel-odometry-model_fig2_351134792"/>
+            <Image className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] " src="/led_odometry_info.jpg" width={400} height={500} alt="Image of the LED screen displaying odometry data"/>
           </div>
           <div>
             <h3 className="mt-[4rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Odometry</h3>
@@ -165,8 +166,9 @@ export default function Home() {
             <p className="justify-start mt-[1rem] mb-[1rem] ml-[4rem] mr-[4rem]">Finally, the robot drives forward until it reaches within a 1.5 foot radius around the origin, at which point the robot stops. This high tolerance was necessary since the accuracy of the robot's driving and tracking is not very good.</p>
 
           </div>
-          <div>
-            <p>INSERT IMAGES</p>
+
+          <div className="relative mx-auto rounded-lg overflow-hidden">
+            <Image className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem]" src="/bluetooth_phone.jpg" width={400} height={500} alt="Image of the bluetooth screen for sending command data on LightBlue"/>
           </div>
           <div>
             <h3 className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Bluetooth, Controls, and FSMs</h3>
