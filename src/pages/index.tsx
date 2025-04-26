@@ -16,16 +16,18 @@ export default function Home() {
   return (
     <div className="grid items-center justify-items-center min-h-screen p-8 font-[family-name:var(--ont-geist-sans)]">
       <main className="flex flex-col items-center max-w-[1440px]">
-        <h1 className="mt-[4rem] mb-[2rem] text-[2rem] font-bold">Two Wheel Odometry</h1>
+        <h1 className="mt-[4rem] mb-[1rem] text-[2rem] font-bold">Two Wheel Odometry</h1>
         <p className="mb-[0.25rem]">Ivan Chen</p>
-        <p className="mt-[0.25rem] mb-[2rem]">This project was done as the final project of CPET-253 (Microcontroller Systems) at RIT.</p>
+        <p className="mt-[0.25rem] mb-[2rem] text-xs">This project was done as the final project of CPET-253 (Microcontroller Systems) at RIT.</p>
         <div className="grid grid-cols-1 md:grid-cols-[30%_70%] mb-[2rem] items-center">
-          <div className="relative mx-auto rounded-lg overflow-hidden">
-            <Image className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] " src="/splash-image.jpg" width={400} height={500} alt="Picture of the robot"/>
+          <div className="overflow-hidden">
+            <Image className="mx-auto mx-[2rem] my-[2rem]" src="/splash-image.jpg" width={400} height={500} alt="Picture of the robot"/>
           </div>
           <div>
             <h3 className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Project Description</h3>
-            <p className="mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]">This project aims to provide the distance the robot's left and right wheels have traveled using rotary Hall Effect quadrature encoders. This lets us track the position and orientation of the robot over time, known as odometry, without an Inertial Measurement Unit (IMU). We will use this information about the robot's position to drive the robot towards its starting point (a "homing function"). The robot will also be able to wander around a room while avoiding obstacles using ultrasonic sensors, all while continuously tracking its position (a "wandering function"). The robot will be controlled using a mobile smartphone, which will communicate with the robot using Bluetooth. Two finite state machines control the mode of the robot, and the state of its motors. Information about the current state of the robot is displayed on the LED screen on the robot.</p>
+            <p className="mt-[1rem] mb-[1rem] ml-[4rem] mr-[4rem]">This project aims to provide the distance the robot's left and right wheels have traveled using rotary Hall Effect quadrature encoders. This lets us track the position and orientation of the robot over time, known as odometry, without an Inertial Measurement Unit (IMU). We will use this information about the robot's position to drive the robot towards its starting point (a "homing function"). The robot will also be able to wander around a room while avoiding obstacles using ultrasonic sensors, all while continuously tracking its position (a "wandering function"). The robot will be controlled using a mobile smartphone, which will communicate with the robot using Bluetooth. Two finite state machines control the mode of the robot, and the state of its motors. Information about the current state of the robot is displayed on the LED screen on the robot.</p>
+            <p className="mt-[1rem] mb-[1rem] ml-[4rem] mr-[4rem]">The initial project proposal can be found <Link className="text-blue-500 underline hover:opacity-[75%] transition-opacity transition-duration-300" href="/Microcontroller_Systems_Final_Project_Initial_Proposal.pdf" prefetch={true}>here</Link>. MD5: ef0ed11e0038c1e68c848de2b34b836f</p>
+            <p className="mt-[1rem] mb-[1rem] ml-[4rem] mr-[4rem]">The code for this project can be found <Link className="text-blue-500 underline hover:opacity-[75%] transition-opacity transition-duration-300" href="https://github.com/anivanchen/cpet253-final-proj" prefetch={true}>here</Link>.</p>
           </div>
 
           <div className="my-[2rem] col-span-2 border-t-2 border-gray-700" />
@@ -50,8 +52,8 @@ export default function Home() {
           <h1 className="text-[1.5rem] font-bold">Technical Information</h1>
           </div>
 
-          <div className="relative mx-auto rounded-lg overflow-hidden">
-            <Image className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] " src="/encoder-osc.jpg" width={400} height={500} alt="Oscilloscope output of encoders A and B channel"/>
+          <div className="overflow-hidden">
+            <Image className="mx-auto mx-[2rem] my-[2rem]" src="/encoder-osc.jpg" width={400} height={500} alt="Oscilloscope output of encoders A and B channel"/>
           </div>
           <div>
             <h3 className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Encoders</h3>
@@ -66,9 +68,9 @@ export default function Home() {
             </pre>
           </div>
 
-          <div className="relative mx-auto rounded-lg overflow-hidden">
-            <Image className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] " src="/wheel-odometry-model.png" width={400} height={500} alt="https://www.researchgate.net/figure/Wheel-odometry-model_fig2_351134792"/>
-            <Image className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] " src="/led_odometry_info.jpg" width={400} height={500} alt="Image of the LED screen displaying odometry data"/>
+          <div className="overflow-hidden">
+            <Image className="mx-auto mx-[2rem] my-[2rem]" src="/wheel-odometry-model.png" width={400} height={500} alt="https://www.researchgate.net/figure/Wheel-odometry-model_fig2_351134792"/>
+            <Image className="mx-auto mx-[2rem] my-[2rem]" src="/led_odometry_info.jpg" width={400} height={500} alt="Image of the LED screen displaying odometry data"/>
           </div>
           <div>
             <h3 className="mt-[4rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Odometry</h3>
@@ -103,16 +105,16 @@ export default function Home() {
             <p className="justify-start mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]"><code className="bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded-lg font-semibold">delta_left</code> and <code className="bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded-lg font-semibold">delta_right</code> are given to the function as the current encoder count minus the previous encoder count. A more in-depth explanation of how two wheel odometry kinematics works can be found <Link className="text-blue-500 underline hover:opacity-[75%] transition-opacity transition-duration-300" href="https://www.hmc.edu/lair/ARW/ARW-Lecture01-Odometry.pdf" prefetch={true}>here</Link>.</p>
           </div>
 
-          <div>
-            <p>INSERT IMAGES</p>
+          <div className="overflow-hidden">
+            <Image className="mx-auto mx-[2rem] my-[2rem]" src="/wandering.gif" width={720} height={480} alt="GIF of robot in wandering mode"/>
           </div>
           <div>
             <h3 className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Wandering Function</h3>
             <p className="justify-start mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]">The wandering function utilizes the ultrasonic sensor on the robot, which is mounted on a servo motor, to wander around a room. The robot will always try to drive forwards, but will continuously check if an obstacle is detected 20cm in front of it. If an obstacle is detected, the robot will immediately stop driving forwards, and go through a check of the left and right sides of the robot to identify which direction is free for it to move to. It triggers the servo to look left, then capture the distance to any objects to the left, then looks right to again capture the distance to any objects to the left. If nothing is detected in one direction, but something is detected in the other, it will trigger the robot to rotate 90 degrees in the free direction and continue driving forward. The robot defaults to rotating and driving left if both sides are free. This whole process will continue to run until the user stops the robot by changing modes back to USER mode.</p>
           </div>
 
-          <div>
-            <p>INSERT IMAGES</p>
+          <div className="overflow-hidden">
+            <Image className="mx-auto mx-[2rem] my-[2rem]" src="/homing.gif" width={720} height={480} alt="GIF of robot in homing"/>
           </div>
           <div>
             <h3 className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Homing Function</h3>
@@ -164,12 +166,12 @@ export default function Home() {
               </code>
             </pre>
 
-            <p className="justify-start mt-[1rem] mb-[1rem] ml-[4rem] mr-[4rem]">Finally, the robot drives forward until it reaches within a 1.5 foot radius around the origin, at which point the robot stops. This high tolerance was necessary since the accuracy of the robot's driving and tracking is not very good.</p>
+            <p className="justify-start mt-[1rem] mb-[1rem] ml-[4rem] mr-[4rem]">Finally, the robot drives forward until it reaches within a 0.75 foot radius around the origin, at which point the robot stops. This high tolerance was necessary since the accuracy of the robot's driving and tracking is not very good.</p>
 
           </div>
 
-          <div className="relative mx-auto rounded-lg overflow-hidden">
-            <Image className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem]" src="/bluetooth_phone.jpg" width={400} height={500} alt="Image of the bluetooth screen for sending command data on LightBlue"/>
+          <div className="overflow-hidden">
+            <Image className="mx-auto mx-[2rem] my-[2rem]" src="/bluetooth_phone.jpg" width={400} height={500} alt="Image of the bluetooth screen for sending command data on LightBlue"/>
           </div>
           <div>
             <h3 className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Bluetooth, Controls, and FSMs</h3>
@@ -196,7 +198,7 @@ export default function Home() {
           </div>
         </div>
         <div className="mt-[1rem] text-xs">
-          Copyright (c) 2025 Ivan Chen
+          Copyright (c) 2025 <Link className="text-blue-500 underline hover:opacity-[75%] transition-opacity transition-duration-300" href="https://github.com/anivanchen" prefetch={true}>Ivan Chen</Link>
         </div>
       </main>
     </div>
