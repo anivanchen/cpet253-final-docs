@@ -24,7 +24,29 @@ export default function Home() {
           </div>
           <div>
             <h3 className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Project Description</h3>
-            <p className="mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]">This project aims to provide the distance the robot's left and right wheels have traveled using rotary Hall Effect quadrature encoders. This lets us track the position and orientation of the robot over time, known as odometry, without an Inertial Measurement Unit (IMU). We will use this information about the robot's position to drive the robot towards its starting point (a "homing function"). The robot will also be able to wander around a room while avoiding obstacles using ultrasonic sensors, all while continuously tracking its position (a "wandering function"). The robot will be controlled using a mobile smartphone, which will communicate with the robot using Bluetooth. Two finite state machines control the mode of the robot, and the state of its motors.</p>
+            <p className="mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]">This project aims to provide the distance the robot's left and right wheels have traveled using rotary Hall Effect quadrature encoders. This lets us track the position and orientation of the robot over time, known as odometry, without an Inertial Measurement Unit (IMU). We will use this information about the robot's position to drive the robot towards its starting point (a "homing function"). The robot will also be able to wander around a room while avoiding obstacles using ultrasonic sensors, all while continuously tracking its position (a "wandering function"). The robot will be controlled using a mobile smartphone, which will communicate with the robot using Bluetooth. Two finite state machines control the mode of the robot, and the state of its motors. Information about the current state of the robot is displayed on the LED screen on the robot.</p>
+          </div>
+
+          <div className="my-[2rem] col-span-2 border-t-2 border-gray-700" />
+
+          <div className="grid col-span-2">
+            <h3 className="mt-[1rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Obstacles Faced</h3>
+            <p className="mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]">There were a couple obstacles that I had faced while working on this project. First, I had to figure out how encoders on this robot were connected to the board, then figure out how to read the encoder values using hardware interrupts. After being able to properly read the direction and accumulate counts of the encoders, I moved onto working on homing and wandering functions. I tried multiple ways to do the homing, but the innacuracy of the robot's odometry position and rotation drifting over time meant that this was more complicated than expected. In the end, I was able to figure out a simpler way to do the homing, and also had to tune the wheel speeds, rotation parameters, and tolerances in "completing" the homing process, which took multiple hours to get fairly consistent.</p>
+          </div>
+          <div className="grid col-span-2">
+            <h3 className="mt-[1rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Testing and Verification</h3>
+            <p className="mt-[1rem] ml-[4rem] mr-[4rem]">After finding what pins the output of the encoder is on, I used the oscilloscope to verify the waveforms and see what they look like. After writing the code, I was able to test each part of the code individually: confirming the Bluetooth connection works and I can send commands to the robot, checking that the state machines and switching between modes and states worked, messing with the encoders and checking if it was reading the values and direction properly and converting to feet properly, checking if the odometry is accurate (it is not very accurate) enough, and then starting to test the special functions.</p>
+            <p className="mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]">When testing the wandering function, I let the robot drive around the room, checking if there was weird behavior and edge cases that was not considered in the code. The wandering function worked fairly well, and I moved onto the homing function. Here, I had first manually moved the robot, first only forward, then only backwards, then with turns, and seeing if the homing calculation would make the robot face the correct direction, then drive towards it. I tested various tolerances for the end condition of the homing and also the tolerances for the rotation towards the goal, and had to settle on fairly large tolerances to accomodate the innacuracies of the robot.</p>
+          </div>
+          <div className="grid col-span-2">
+            <h3 className="mt-[1rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Possible Improvements</h3>
+            <p className="mt-[1rem] ml-[4rem] mr-[4rem]">My project currently suffers from drift over time due to small inaccuracies accumulating, especially in tracking the rotation of the robot. An improvement could be integrating an Inertial Measurement Unit (IMU) or optical flow sensor to provide better localization through sensor fusion.</p>
+            <p className="mt-[1rem] ml-[4rem] mr-[4rem]">A more robust approach to the homing function could use PID control to more precisely rotate to the proper angle and also driving to the origin point. Some sort of path planning might also improve the homing functionality. </p>
+            <p className="mt-[1rem] mb-[1rem] ml-[4rem] mr-[4rem]">Including obstacle avoidance using the ultrasonic sensors and figuring out how to get around the obstacle in the homing feature would also be nice.</p>
+          </div>
+
+          <div className="grid col-span-2 mt-[2rem] py-[2rem] border-t-2 border-b-2 border-gray-700 text-center">
+          <h1 className="text-[1.5rem] font-bold">Technical Information</h1>
           </div>
           
           <div>
