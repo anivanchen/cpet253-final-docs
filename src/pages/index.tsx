@@ -106,7 +106,7 @@ export default function Home() {
           </div>
 
           <div className="overflow-hidden">
-            <Image className="mx-auto mx-[2rem] my-[2rem]" src="/wandering.gif" width={720} height={480} alt="GIF of robot in wandering mode"/>
+            <Image className="mx-auto mx-[2rem] my-[2rem]" src="/wandering.gif" width={720} height={480} alt="GIF of robot in wandering mode" unoptimized/>
           </div>
           <div>
             <h3 className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Wandering Function</h3>
@@ -114,7 +114,7 @@ export default function Home() {
           </div>
 
           <div className="overflow-hidden">
-            <Image className="mx-auto mx-[2rem] my-[2rem]" src="/homing.gif" width={720} height={480} alt="GIF of robot in homing"/>
+            <Image className="mx-auto mx-[2rem] my-[2rem]" src="/homing.gif" width={720} height={480} alt="GIF of robot in homing" unoptimized/>
           </div>
           <div>
             <h3 className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Homing Function</h3>
