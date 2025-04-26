@@ -17,7 +17,7 @@ export default function Home() {
       <main className="flex flex-col items-center max-w-[1440px]">
         <h1 className="mt-[4rem] mb-[2rem] text-[2rem] font-bold">Two Wheel Odometry</h1>
         <p className="mb-[0.25rem]">Ivan Chen</p>
-        <p className="mt-[0.25rem] mb-[4rem]">This project was done as the final project of CPET-253 (Microcontroller Systems) at RIT.</p>
+        <p className="mt-[0.25rem] mb-[2rem]">This project was done as the final project of CPET-253 (Microcontroller Systems) at RIT.</p>
         <div className="grid grid-cols-1 md:grid-cols-[30%_70%] mb-[2rem] items-center">
           <div className="relative mx-auto rounded-lg overflow-hidden">
             <Image className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] " src="/splash-image.jpg" width={400} height={500} alt="Picture of the robot"/>
@@ -69,7 +69,7 @@ export default function Home() {
             <p>INSERT IMAGES</p>
           </div>
           <div>
-            <h3 className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Odometry</h3>
+            <h3 className="mt-[4rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Odometry</h3>
             <p className="justify-start mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]">Two-wheel odometry is a method of estimating a robot's position and orientation by using the data from two wheels. By tracking the rotation of each wheel, we can determine how far the robot has traveled and how much it has turned. This information is then used to update the robot's estimated position and orientation in a process called pose estimation.</p>
 
             <pre className="bg-black/[.05] dark:bg-white/[.06] mx-[4rem] px-[1rem] py-[1rem] rounded font-[family-name:var(--font-geist-mono)] font-semibold text-wrap">
@@ -100,6 +100,7 @@ export default function Home() {
 
             <p className="justify-start mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]"><code className="bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded font-semibold">delta_left</code> and <code className="bg-black/[.05] dark:bg-white/[.06] px-[6px] py-[3px] rounded font-semibold">delta_right</code> are given to the function as the current encoder count minus the previous encoder count.</p>
           </div>
+
           <div>
             <p>INSERT IMAGES</p>
           </div>
@@ -107,6 +108,7 @@ export default function Home() {
             <h3 className="mt-[2rem] mb-[1rem] ml-[4rem] mr-[4rem] text-[1.2rem] font-bold">Wandering Function</h3>
             <p className="justify-start mt-[1rem] mb-[2rem] ml-[4rem] mr-[4rem]">The wandering function utilizes the ultrasonic sensor on the robot, which is mounted on a servo motor, to wander around a room. The robot will always try to drive forwards, but will continuously check if an obstacle is detected 20cm in front of it. If an obstacle is detected, the robot will immediately stop driving forwards, and go through a check of the left and right sides of the robot to identify which direction is free for it to move to. It triggers the servo to look left, then capture the distance to any objects to the left, then looks right to again capture the distance to any objects to the left. If nothing is detected in one direction, but something is detected in the other, it will trigger the robot to rotate 90 degrees in the free direction and continue driving forward. The robot defaults to rotating and driving left if both sides are free. This whole process will continue to run until the user stops the robot by changing modes back to USER mode.</p>
           </div>
+
           <div>
             <p>INSERT IMAGES</p>
           </div>
@@ -190,19 +192,6 @@ export default function Home() {
             </pre>
           </div>
         </div>
-        
-        {/* <pre className="bg-black/[.05] dark:bg-white/[.06] px-[2rem] py-[2rem] rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-          <code>
-            void update_pose(double delta_left, double delta_right) &#123;{"\n"}
-              double delta_dist = (delta_left + delta_right) / 2;{"\n"}
-              double delta_theta = (delta_right - delta_left) / (2 * ref_to_wheel_dist);{"\n"}
-      {"\n"}
-              current_pose.x += delta_dist * cos(current_pose.theta + delta_theta / 2);{"\n"}
-              current_pose.y += delta_dist * sin(current_pose.theta + delta_theta / 2);{"\n"}
-              current_pose.theta += delta_theta;{"\n"}
-            &#125;
-          </code>
-        </pre> */}
       </main>
     </div>
   );
